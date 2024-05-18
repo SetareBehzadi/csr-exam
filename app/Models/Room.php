@@ -15,6 +15,7 @@ class Room extends Model
         'amenities' => 'array',
     ];
 
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'reservations')
@@ -50,7 +51,7 @@ class Room extends Model
             $roomsQuery->where('type', $roomType);
         }
 
-        return $roomsQuery->get();
+        return $roomsQuery->paginate(10);
 
     }
 }

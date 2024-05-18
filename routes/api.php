@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\api\GuestController;
+use App\Http\Controllers\api\ReservationController;
 use App\Http\Controllers\api\RoomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/available-rooms',[RoomController::class, 'getAvailableRooms']);
+Route::post('/reservations/{user}',[ReservationController::class, 'gatUserReservations']);
+Route::get('users/birthdate', [GuestController::class, 'getUsersBirthday']);
