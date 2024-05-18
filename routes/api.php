@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/available-rooms',[RoomController::class, 'getAvailableRooms']);
-Route::post('/reservations/{user}',[ReservationController::class, 'gatUserReservations']);
+Route::post('available-rooms',[RoomController::class, 'getAvailableRooms']);
+Route::post('reservations/{user}',[ReservationController::class, 'gatUserReservations']);
 Route::get('users/birthdate', [GuestController::class, 'getUsersBirthday']);
+Route::post('reservations/apply/promotion/{reservation}', [ReservationController::class, 'applyPromotionToReservation']);
