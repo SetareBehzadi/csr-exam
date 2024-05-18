@@ -9,9 +9,19 @@ class Guest extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'preferences' => 'array',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    public function findGustsByBirthdateInNextMonth($month)
+    {
+        $guests =  $this->with(['user'])->whereMonth('birthdate', $month);
+
+        return $guests->get();
+    }
 }
