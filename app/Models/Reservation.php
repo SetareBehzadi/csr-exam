@@ -33,4 +33,9 @@ class Reservation extends Model
     {
         return $this->belongsTo(Guest::class, 'user_id', 'user_id');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

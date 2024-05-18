@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->constrained('users')->nullable()->comment('No need to login to comment');
-            $table->unsignedBigInteger('commentable_id');
-            $table->string('commentable_type');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('reservation_id')->constrained('reservations');
+            $table->integer('rating');
             $table->text('comment');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('reviews');
     }
 };

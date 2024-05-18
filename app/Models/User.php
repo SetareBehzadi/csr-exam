@@ -57,7 +57,7 @@ class User extends Authenticatable
         return $this->hasMany(Reservation::class);
     }
 
-    public function getDisplayName()
+    public function displayName()
     {
         return trim($this->first_name . ' ' . $this->last_name);
     }
