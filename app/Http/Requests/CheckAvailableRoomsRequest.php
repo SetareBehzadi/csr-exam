@@ -14,17 +14,20 @@ class CheckAvailableRoomsRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
             'checkIn' => 'required|date',
             'checkOut' => 'required|date|after:checkIn',
             'guestCount' => 'required|integer',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'checkIn.required' => 'Check-in date is required.',
+            'checkIn.date' => 'Check-in date must be a valid date.',
         ];
     }
 }

@@ -9,6 +9,7 @@ use App\Http\Resources\ReservationResource;
 use App\Models\Promotion;
 use App\Models\Reservation;
 use App\Models\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -22,12 +23,14 @@ class ReservationController extends Controller
         return new AllReservationResource($reservations);
     }
 
-    public function applyPromotionToReservation(Reservation $reservation,Request $request)
+    public function applyPromotionToReservation(Promotion $promotion,Reservation $reservation)
     {
-        $typeId = ($request->type == 'room') ? $reservation->room_id : $reservation->user_id;
-        $promotionType = ($request->type == 'room')?'Models\Room':'Models\User';
 
-        $promotion = $this->promotion->getFirstPromotionByRoom($typeId,$promotionType ,$reservation->check_in, $reservation->check_out);
+            $checkInDate = $reservation->check_in;
+            $checkPromotion = ($checkInDate >= $promotion->date_start && $checkInDate <= $promotion->date_end) ? True: False;
+        if (!$checkPromotion){
+            return Response()->json('promotion not found',404);
+        }
 
         $discountAmount = 0;
         if ($promotion->type === 'percentage') {
@@ -55,5 +58,6 @@ class ReservationController extends Controller
         $reservation->save();
 
 
+        return new ReservationResource($reservation);
     }
 }

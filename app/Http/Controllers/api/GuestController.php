@@ -28,12 +28,11 @@ class GuestController extends Controller
         foreach ($guests as $guest) {
             $guestRooms = [];
             if ($guest->preferences !== null) {
-                $guestPreferences = json_decode(json_encode($guest->preferences), true);
+                $guestPreferences = json_decode($guest->preferences, true);
 
                 foreach ($validRooms as $room) {
-                    $roomAmenities = json_decode(json_encode($room->amenities), true);
-
-                    // بررسی تطابق حداقل یکی از amenities اتاق با یکی از preferences مهمان
+                    $roomAmenities = json_decode($room->amenities, true);
+                    //check rooms amenities with guests preferences
                     $match = array_intersect($guestPreferences, $roomAmenities);
 
                     if (!empty($match)) {
@@ -41,6 +40,7 @@ class GuestController extends Controller
                     }
                 }
             }
+
             //age hichi moshtarak nadasht otaghaye khali ro neshonesh bede
             $guest->rooms = count($guestRooms) > 0 ? $guestRooms : $validRooms ;
         }

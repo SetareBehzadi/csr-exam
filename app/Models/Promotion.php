@@ -25,4 +25,9 @@ class Promotion extends Model
             ->where('promotionable_id', $typeId)
             ->first();
     }
+
+    public function checkPromotionValidation($startDate,$endDate)
+    {
+
+    }
 }

@@ -18,7 +18,7 @@ class GuestBirthdateResource extends JsonResource
            'guest_name' => $this->user->displayName,
             'guest_mobile_number' => $this->mobile_number,
             'birthdate' => $this->birthdate,
-           'rooms' => RoomResource::collection($this->rooms),
+           'recomended_rooms' => RoomResource::collection($this->rooms),
         ];
     }
 }

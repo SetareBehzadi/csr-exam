@@ -12,15 +12,12 @@ class RoomController extends Controller
 {
     public function __construct(private Room $roomObj,){}
 
-    /**
-     * Get available rooms based on the checkIn,checkOut,guestCount.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function getAvailableRooms(CheckAvailableRoomsRequest $request)
     {
       $rooms =  $this->roomObj->availableRooms($request['checkIn'], $request['checkOut'], $request['guestCount']);
+        if (empty($rooms)) {
+            return response()->json(['message' => 'No available rooms found'], 404);
+        }
       return new AvailableRoomsResource($rooms);
     }
 }

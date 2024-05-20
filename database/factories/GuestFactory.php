@@ -25,12 +25,7 @@ class GuestFactory extends Factory
             'mobile_number' => $this->faker->phoneNumber(),
             'loyalty' =>  $this->faker->randomNumber(1,100),
             'birthdate' => $this->faker->dateTimeBetween('-60 years', '-18 years')->format('Y-m-d'),
-            'preferences' => json_encode([
-                $this->faker->word,
-                $this->faker->sentence(2)
-            ]),
-
-
+            'preferences' => json_encode(['wifi', 'tv', 'ac']),
         ];
     }
 }

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->double('discount');
             $table->date('date_start');
             $table->date('date_end');
-            $table->unsignedBigInteger('promotionable_id');
-            $table->string('promotionable_type')->comment('guest or room');
+            $table->unsignedBigInteger('promotionable_id')->nullable();
+            $table->string('promotionable_type')->nullable()->comment('guest or room');
             $table->timestamps();
             $table->softDeletes();
         });
