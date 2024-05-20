@@ -11,7 +11,7 @@ class Promotion extends Model
     protected $guarded=['id'];
     protected $table = 'promotions';
 
-    public function getAllPromotionByRoom($typeId,$type,$startDate=null,$endDate=null)
+    public function getFirstPromotionByRoom($typeId,$type,$startDate=null,$endDate=null)
     {
 
         $promotionQuery = self::query();
@@ -23,6 +23,6 @@ class Promotion extends Model
         }
        return $promotionQuery->where('promotionable_type', $type)
             ->where('promotionable_id', $typeId)
-            ->get();
+            ->first();
     }
 }

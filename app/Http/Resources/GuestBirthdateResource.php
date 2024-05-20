@@ -15,7 +15,7 @@ class GuestBirthdateResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-           'guest_name' => $this->user->getDisplayName(),
+           'guest_name' => $this->user->displayName,
             'guest_mobile_number' => $this->mobile_number,
             'birthdate' => $this->birthdate,
            'rooms' => RoomResource::collection($this->rooms),

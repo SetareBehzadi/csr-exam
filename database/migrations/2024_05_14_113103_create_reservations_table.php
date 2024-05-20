@@ -18,7 +18,8 @@ return new class extends Migration
             $table->dateTime('check_in');
             $table->dateTime('check_out');
             $table->bigInteger('tax')->comment('mohasebeye maliat be toman');
-            $table->bigInteger('total_price')->comment('(tedade roze *gheimate otag)+tax');
+            $table->bigInteger('total_price')->comment('(tedade roze *gheimate otag)');
+            $table->bigInteger('final_price')->comment('(tedade roze *gheimate otag)+tax - discount');
 
             $table->timestamps();
             $table->softDeletes();

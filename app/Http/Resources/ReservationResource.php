@@ -15,12 +15,15 @@ class ReservationResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'guest_name' => $this->guest->user->getDisplayName(),
+            'guest_name' => $this->guest->user->displayName,
             'guest_mobile_number' => $this->guest->mobile_number,
             'check_in' => $this->check_in,
             'check_out' => $this->check_out,
             'room' => new RoomResource($this->room),
             'tax' => $this->tax,
+            'total_price' => $this->total_price,
+            'discount_price' => $this->promotion_amount,
+            'final_price' => $this->total_price,
         ];
     }
 }
